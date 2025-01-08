@@ -11,7 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Componente de Navegação
 function NavigationBar() {
   return (
-    <Navbar bg="light" expand="lg" fixed="top"  > {/* Navbar fixa no topo */}
+    //<Navbar expand="lg" fixed="top" style={{ backgroundColor: '#4CAF50' }}> {/* Navbar fixa no topo */}
+    <Navbar expand="lg" fixed="top" className="custom-navbar"> {/* Navbar fixa no topo */}
       <Container>
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

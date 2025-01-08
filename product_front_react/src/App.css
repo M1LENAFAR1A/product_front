@@ -41,6 +41,26 @@
   color: #888;
 }
 
-.custom-navbar{
-  background-color:#427377;
+/* Estilo Personalizado para Navbar */
+/* Estilo personalizado para Navbar */
+.custom-navbar {
+  background-color: #4CAF50 !important; /* Fundo verde */
+  border-bottom: 2px solid #388E3C !important; /* Borda inferior mais escura */
+  color: #fff !important; /* Cor padrão do texto */
+}
+
+.custom-navbar .navbar-brand {
+  color: #fff !important; /* Cor do texto da marca */
+}
+
+.custom-navbar .navbar-brand:hover {
+  color: #C8E6C9 !important; /* Cor do texto ao passar o mouse */
+}
+
+.custom-navbar .nav-link {
+  color: #fff !important; /* Cor dos links */
+}
+
+.custom-navbar .nav-link:hover {
+  color: #C8E6C9 !important; /* Cor dos links ao passar o mouse */
 }
