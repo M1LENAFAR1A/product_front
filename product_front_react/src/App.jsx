@@ -1,32 +1,30 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
+import productImage from './assets/flower.png'; // Imagem usada nos quadrados
 
-// Componente de Navegação
 function NavigationBar() {
   return (
-    //<Navbar expand="lg" fixed="top" style={{ backgroundColor: '#4CAF50' }}> {/* Navbar fixa no topo */}
-    <Navbar expand="lg" fixed="top" className="custom-navbar"> {/* Navbar fixa no topo */}
+    <Navbar expand="lg" fixed="top" className="custom-navbar">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="#home">ORCHID</Nav.Link>
+            <img 
+                    src={productImage} 
+                    alt="Produto" 
+                    className="square-image"
+                  />
+          </Nav>
+          <Nav className="ms-auto">
+            <Button variant="outline-success">Adicionar Produto</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -36,7 +34,8 @@ function NavigationBar() {
 
 // Componente Principal
 function App() {
-  const [count, setCount] = useState(0);
+  const squareName = 'Produto X'; // Nome padrão para todos os quadrados
+  const squareColor = '#A0C4FF'; // Cor padrão para todos os quadrados
 
   return (
     <>
@@ -44,28 +43,33 @@ function App() {
       <NavigationBar />
 
       {/* Conteúdo Principal */}
-      <div style={{ marginTop: '80px' }}> {/* Adiciona margem para evitar sobreposição */}
+      <div style={{ marginTop: '80px' }}> {/* Margem para evitar sobreposição */}
         <Container>
-          <div className="text-center">
-            <a href="https://vite.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-          </div>
-          <h1>Vite + React</h1>
-          <div className="card text-center">
-            <button onClick={() => setCount((count) => count + 1)}>
-              count is {count}
-            </button>
-            <p>
-              Edit <code>src/App.jsx</code> and save to test HMR
-            </p>
-          </div>
-          <p className="read-the-docs text-center">
-            Click on the Vite and React logos to learn more
-          </p>
+          <h2 className="text-center my-4">Grade Uniforme 4x3 com Imagem</h2>
+          <Row>
+            {[...Array(12)].map((_, index) => (
+              <Col key={index} md={3} className="grid-item">
+                <div
+                  className="p-3 border text-center"
+                  style={{
+                    backgroundColor: squareColor,
+                    borderRadius: '8px',
+                    color: '#333',
+                    marginBottom: '20px',
+                  }}
+                >
+                  {/* Imagem no Quadrado */}
+                  <img 
+                    src={productImage} 
+                    alt="Produto" 
+                    className="square-image"
+                  />
+                  {/* Nome do Produto */}
+                  <h5 className="mt-2">{squareName}</h5>
+                </div>
+              </Col>
+            ))}
+          </Row>
         </Container>
       </div>
     </>

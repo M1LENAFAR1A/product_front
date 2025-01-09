@@ -44,9 +44,13 @@
 /* Estilo Personalizado para Navbar */
 /* Estilo personalizado para Navbar */
 .custom-navbar {
-  background-color: #4CAF50 !important; /* Fundo verde */
-  border-bottom: 2px solid #388E3C !important; /* Borda inferior mais escura */
+  background-color: #427377 !important; /* Fundo verde */
+  border-bottom: 2px solid #427344 !important; /* Borda inferior mais escura */
   color: #fff !important; /* Cor padrão do texto */
+  font-family: 'Roboto';
+  font-weight: 700;
+  size: 36px;
+  line-height: 42px;
 }
 
 .custom-navbar .navbar-brand {
@@ -63,4 +67,35 @@
 
 .custom-navbar .nav-link:hover {
   color: #C8E6C9 !important; /* Cor dos links ao passar o mouse */
+}
+
+.grid-item col-md-3{
+  margin-top: 5px;
+}
+
+/* Estilo padrão para a imagem no Navbar */
+.navbar-image {
+  width: 50px; /* Tamanho padrão para telas grandes */
+  height: 50px;
+  object-fit: cover; /* Mantém proporção sem distorcer */
+  border-radius: 50%; /* Deixa a imagem redonda */
+  margin-left: 10px; /* Espaço à esquerda */
+  margin-right: 10px; /* Espaço à direita */
+  cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+}
+
+/* Ajuste para telas médias (tablets) */
+@media (max-width: 992px) {
+  .navbar-image {
+    width: 40px; /* Tamanho reduzido */
+    height: 40px;
+  }
+}
+
+/* Ajuste para telas pequenas (celulares) */
+@media (max-width: 576px) {
+  .navbar-image {
+    width: 30px; /* Tamanho menor */
+    height: 30px;
+  }
 }
