@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
-import productImage from './assets/flower.png'; // Imagem usada nos quadrados
 
 function NavigationBar() {
   return (
@@ -17,11 +16,6 @@ function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home">ORCHID</Nav.Link>
-            <img 
-                    src={productImage} 
-                    alt="Produto" 
-                    className="square-image"
-                  />
           </Nav>
           <Nav className="ms-auto">
             <Button variant="outline-success">Adicionar Produto</Button>
@@ -32,10 +26,18 @@ function NavigationBar() {
   );
 }
 
-// Componente Principal
 function App() {
-  const squareName = 'Produto X'; // Nome padrão para todos os quadrados
-  const squareColor = '#A0C4FF'; // Cor padrão para todos os quadrados
+  const [products, setProducts] = useState([]); // Estado para armazenar produtos
+
+  // Fetch na API para buscar os produtos
+  useEffect(() => {
+    fetch('http://localhost:3000/api/products') // URL do endpoint de produtos
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data); // Atualiza o estado com os produtos
+      })
+      .catch((error) => console.error('Erro ao buscar produtos:', error));
+  }, []);
 
   return (
     <>
@@ -43,29 +45,34 @@ function App() {
       <NavigationBar />
 
       {/* Conteúdo Principal */}
-      <div style={{ marginTop: '80px' }}> {/* Margem para evitar sobreposição */}
+      <div style={{ marginTop: '80px' }}>
         <Container>
-          <h2 className="text-center my-4">Grade Uniforme 4x3 com Imagem</h2>
+          <h2 className="text-center my-4">Produtos Disponíveis</h2>
           <Row>
-            {[...Array(12)].map((_, index) => (
-              <Col key={index} md={3} className="grid-item">
+            {products.map((product) => (
+              <Col key={product.id} md={3} className="grid-item">
                 <div
                   className="p-3 border text-center"
                   style={{
-                    backgroundColor: squareColor,
+                    backgroundColor: '#A0C4FF',
                     borderRadius: '8px',
                     color: '#333',
                     marginBottom: '20px',
                   }}
                 >
-                  {/* Imagem no Quadrado */}
+                  {/* Imagem do Produto */}
                   <img 
-                    src={productImage} 
-                    alt="Produto" 
+                    src={product.image} 
+                    alt={product.name} 
                     className="square-image"
+                    style={{ width: '100%', height: '150px', objectFit: 'cover' }}
                   />
                   {/* Nome do Produto */}
-                  <h5 className="mt-2">{squareName}</h5>
+                  <h5 className="mt-2">{product.name}</h5>
+                  {/* Preço do Produto */}
+                  <p>Preço: R$ {product.price.toFixed(2)}</p>
+                  {/* Quantidade Disponível */}
+                  <p>Quantidade: {product.qtd}</p>
                 </div>
               </Col>
             ))}
